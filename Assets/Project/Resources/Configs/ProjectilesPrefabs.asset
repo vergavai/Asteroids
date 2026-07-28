@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5986c328375a4c7cb4c6adec00de29c8, type: 3}
+  m_Name: ProjectilesPrefabs
+  m_EditorClassIdentifier: 
+  _bulletPrefab: {fileID: 5573946457926171087, guid: f0a034ca1733edb499f244f44fc5547a, type: 3}
+  _laserPrefab: {fileID: 7922552971572698959, guid: c551af6956e5b9b4690e5b7e47c0809e, type: 3}

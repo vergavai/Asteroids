@@ -1,0 +1,4 @@
+{
+	"name": "Gameplay.GameBounds",
+	"references":[ "GUID:cd228be4f58310644a7784062b13ff6a", "GUID:8ad8c2b90a0b477787eb7f27e9da37f7" ]
+}

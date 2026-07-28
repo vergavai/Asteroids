@@ -1,0 +1,21 @@
+﻿{
+  "name": "UI.ViewModels",
+  "rootNamespace": "",
+  "references": [
+    "GUID:6055be8ebefd69e48b49212b09b47b2f",
+    "GUID:44129cf66e76458ab8d26f8a4eabf375",
+    "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+    "GUID:864c1a16631b4f6193355f5640adbbd6",
+    "GUID:d9b374b0d931455cb6ede9abbd8750f6",
+    "GUID:38e555058b4d442aafe628743979a3f1"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

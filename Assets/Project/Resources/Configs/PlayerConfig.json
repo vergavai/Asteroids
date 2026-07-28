@@ -1,0 +1,16 @@
+{
+  "BulletCount": 30,
+  "BulletSpeed": 30,
+  "LaserCount": 5,
+  "LaserCooldown": 2.0,
+  "LaserDuration": 0.25,
+  "MovementSpeed": 10,
+  "AccelerationTime": 0.7,
+  "DecelerationTime": 0.5,
+  "PushDecelerationTime": 1.5,
+  "LaserMaxCharges": 3,
+  "Hearts": 3,
+  "PushSpeed": 2,
+  "LaserLength": 35,
+  "LaserHeight": 0.5
+}

@@ -1,0 +1,21 @@
+{
+    "name": "Player.Bullets",
+    "rootNamespace": "",
+    "references": [
+        "GUID:814e4fed4df5b934494706de80d2d490",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:104967d398b6402abfa7a66e7634f79c",
+        "GUID:8ad8c2b90a0b477787eb7f27e9da37f7",
+        "GUID:13755de99b4e4e0da6489f1c97a06d17",
+        "GUID:c07a2f4b2fac4caea68c4675ce59bd92"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

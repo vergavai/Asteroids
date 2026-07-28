@@ -1,0 +1,10 @@
+{
+  "AsteroidCount": 10,
+  "SaucerCount": 5,
+  "SpawnCooldown": 1.5,
+  "AsteroidSpeed": 2.0,
+  "SaucerSpeed": 2.5,
+  "DisableRange": 5.0,
+  "ShardsPerAsteroid": 3,
+  "SaucerTrackInterval": 1.5
+}

@@ -1,0 +1,23 @@
+{
+    "name": "Player.Movement",
+    "rootNamespace": "",
+    "references": [
+        "GUID:99cc3d45dfad45ed9c0e8295081ffc87",
+        "GUID:f5689386deda4147a6b78eedd276b77e",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:ab48a3fff30e19345845d34e46e5853d",
+        "GUID:1161f0ce3ee844a6bd80a41950355101",
+        "GUID:8ad8c2b90a0b477787eb7f27e9da37f7",
+        "GUID:8ab3bddf113047c2bfb9c6e9442146a8",
+        "GUID:464d78ce186b40698e0f004cce4b6db9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

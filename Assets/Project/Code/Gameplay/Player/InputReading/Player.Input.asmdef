@@ -1,0 +1,4 @@
+﻿{
+  "name": "Player.Input",
+  "references":[ "GUID:1161f0ce3ee844a6bd80a41950355101", "GUID:8ab3bddf113047c2bfb9c6e9442146a8", "GUID:464d78ce186b40698e0f004cce4b6db9" ]
+}

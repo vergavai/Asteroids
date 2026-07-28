@@ -1,0 +1,25 @@
+{
+    "name": "Projectiles.Lasers",
+    "rootNamespace": "",
+    "references": [
+        "GUID:814e4fed4df5b934494706de80d2d490",
+        "GUID:104967d398b6402abfa7a66e7634f79c",
+        "GUID:ada94883a83e4e749860a3b22cd50d1a",
+        "GUID:99cc3d45dfad45ed9c0e8295081ffc87",
+        "GUID:f5689386deda4147a6b78eedd276b77e",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:ab48a3fff30e19345845d34e46e5853d",
+        "GUID:8ad8c2b90a0b477787eb7f27e9da37f7",
+        "GUID:cd228be4f58310644a7784062b13ff6a",
+        "GUID:c07a2f4b2fac4caea68c4675ce59bd92"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
