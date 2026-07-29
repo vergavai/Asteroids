@@ -1,54 +1,46 @@
 ﻿using System;
 using Project.Code.Gameplay.Player.Collisions.Invincibility;
 using UnityEngine;
-using Input = UnityEngine.Input;
 
 namespace Project.Code.Gameplay.Player.InputReading
 {
     public class PlayerInput
     {
+        private IInputProvider _inputProvider;
         private PlayerInvincibility _invincibility;
-        private bool _isMoving;
         
+        private float _horizontalInput;
+        private float _verticalInput;
 
-        public event Action MoveStarted;
-        public event Action MoveEnded;
         public event Action ShootRequested;
         public event Action LaserRequested;
-        
-        public float HorizontalInput { get; private set; }
-        public float VerticalInput { get; private set; }
 
-        public PlayerInput(PlayerInvincibility invincibility)
+        public float HorizontalInput => _horizontalInput;
+        public float VerticalInput => _verticalInput;
+
+        public PlayerInput(IInputProvider inputProvider, PlayerInvincibility invincibility)
         {
+            _inputProvider = inputProvider;
             _invincibility = invincibility;
+
+            _inputProvider.ShootPerformed += () => ShootRequested?.Invoke();
+            _inputProvider.LaserPerformed += () => LaserRequested?.Invoke();
         }
 
         public void UpdateInput()
         {
             if (_invincibility.IsInvincible)
             {
-                HorizontalInput = 0;
-                VerticalInput = 0;
+                _horizontalInput = 0;
+                _verticalInput = 0;
                 return;
             }
+
+            _inputProvider.UpdateInput();
             
-            HorizontalInput = Input.GetAxis("Horizontal");
-            VerticalInput = Input.GetAxis("Vertical");
-
-            bool isMovingNow = Mathf.Abs(HorizontalInput) > 0.01f || Mathf.Abs(VerticalInput) > 0.01f;
-
-            if (isMovingNow && !_isMoving)
-                MoveStarted?.Invoke();
-            else if (!isMovingNow && _isMoving)
-                MoveEnded?.Invoke();
-
-            _isMoving = isMovingNow;
-
-            if (Input.GetMouseButtonDown(0))
-                ShootRequested?.Invoke();
-            if (Input.GetMouseButtonDown(1))
-                LaserRequested?.Invoke();
+            Vector2 movement = _inputProvider.GetMovementInput();
+            _horizontalInput = movement.x;
+            _verticalInput = movement.y;
         }
     }
 }

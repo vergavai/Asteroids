@@ -1,6 +1,6 @@
 ﻿{
   "MapSize": 10,
-  "AsteroidReward": 1,
-  "ShardReward": 0.1,
-  "SaucerReward": 2
+  "AsteroidReward": 10,
+  "ShardReward": 5,
+  "SaucerReward": 20
 }

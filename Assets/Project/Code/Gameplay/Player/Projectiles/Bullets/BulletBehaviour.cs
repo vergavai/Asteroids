@@ -15,23 +15,22 @@ namespace Project.Code.Gameplay.Player.Projectiles.Bullets
             _bullet.Initialize(transform, gameObject);
         }
 
+        public void SetDirection(Vector3 direction)
+        {
+            _bullet.SetDirection(direction);
+        }
+
         private void Update()
         {
             _bullet.UpdatePosition();
         }
-        
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponent(out EnemyBehaviour enemy))
+            if (other.TryGetComponent<EnemyBehaviour>(out var enemy))
             {
                 _bullet.OnHit(enemy);
             }
-        }
-
-        public void Shoot()
-        {
-            gameObject.SetActive(true);
-            _bullet.SetDirection();
         }
     }
 }

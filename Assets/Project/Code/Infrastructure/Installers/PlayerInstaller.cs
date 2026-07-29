@@ -16,6 +16,7 @@ using Project.Code.Gameplay.Player.Projectiles.Lasers.LaserGenerator;
 using Project.Code.Gameplay.Player.Rewards;
 using Project.Code.Gameplay.Player.Rotating;
 using Project.Code.Gameplay.Player.Weapons;
+using Project.Code.UI.Visibility;
 using UnityEngine;
 using Zenject;
 
@@ -23,6 +24,7 @@ namespace Project.Code.Infrastructure.Installers
 {
     public class PlayerInstaller : MonoInstaller
     {
+        [SerializeField] private ForceMobileCheck _forceMobile;
         [SerializeField] private GameObject _playerPrefab;
         [SerializeField] private ProjectilePrefabs projectilePrefabs;
         [SerializeField] private Transform _spawnPoint;
@@ -32,6 +34,7 @@ namespace Project.Code.Infrastructure.Installers
         {
             BindSignals();
             BindConfig();
+            BindInputProvider();
             BindProjectilesConfig();
             BindProjectilesContainer();
             BindProjectilePools();
@@ -47,6 +50,27 @@ namespace Project.Code.Infrastructure.Installers
             BindPlayerMovement();
             BindPlayerInfo();
             BindAndInstantiatePlayer();
+        }
+        
+        private void BindInputProvider()
+        {
+            bool useMobile = _forceMobile.ForceMobileInput || SystemInfo.deviceType == DeviceType.Handheld;
+            
+            if (!useMobile)
+            {
+                Container.Bind<IInputProvider>()
+                    .To<DesktopInputProvider>()
+                    .FromNew()
+                    .AsSingle()
+                    .NonLazy();
+            }
+            else
+            {
+                Container.BindInterfacesAndSelfTo<MobileInputProvider>()
+                    .FromNew()
+                    .AsSingle()
+                    .NonLazy();
+            }
         }
 
         private void BindConfig()
@@ -84,6 +108,13 @@ namespace Project.Code.Infrastructure.Installers
         private void SetPlayerPosition(InjectContext context, PlayerMovementBehaviour player)
         {
             player.transform.position = _spawnPoint.position;
+            
+            IInputProvider inputProvider = Container.Resolve<IInputProvider>();
+            
+            if (inputProvider is DesktopInputProvider desktopProvider)
+            {
+                desktopProvider.Initialize(player.transform);
+            }
         }
 
         private void BindPlayerMovement()

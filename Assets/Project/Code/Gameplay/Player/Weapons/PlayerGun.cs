@@ -6,6 +6,7 @@ using Project.Code.Configs;
 using Project.Code.Gameplay.Player.InputReading;
 using Project.Code.Gameplay.Player.Projectiles.Bullets;
 using Project.Code.Gameplay.Player.Projectiles.Lasers;
+using Project.Code.Gameplay.Player.Rotating;
 using UnityEngine;
 
 namespace Project.Code.Gameplay.Player.Weapons
@@ -18,6 +19,7 @@ namespace Project.Code.Gameplay.Player.Weapons
         private Transform _gunPoint;
         private Transform _laserPoint;
         private PlayerConfig _config;
+        private PlayerRotation _rotation;
 
         private int _maxCharges;
         private int _currentCharges;
@@ -30,9 +32,10 @@ namespace Project.Code.Gameplay.Player.Weapons
         public float[] ChargeTimers => _chargeTimers;
 
         public PlayerGun(PlayerInput input, ObjectPool<BulletBehaviour> bulletPool,
-            ObjectPool<LaserBehaviour> laserPool, PlayerConfig config)
+            ObjectPool<LaserBehaviour> laserPool, PlayerConfig config, PlayerRotation rotation)
         {
             _input = input;
+            _rotation = rotation;
             _bulletPool = bulletPool;
             _laserPool = laserPool;
             _config = config;
@@ -40,8 +43,10 @@ namespace Project.Code.Gameplay.Player.Weapons
             _currentCooldown = _config.LaserCooldown;
             _currentCharges = _maxCharges;
             _chargeTimers = new float[_maxCharges];
+            
             for (int i = 0; i < _maxCharges; i++)
                 _chargeTimers[i] = 0f;
+            
             _rechargeTokenSource = new CancellationTokenSource();
         }
 
@@ -73,7 +78,8 @@ namespace Project.Code.Gameplay.Player.Weapons
                 return;
 
             bullet.transform.position = _gunPoint.position;
-            bullet.Shoot();
+            bullet.SetDirection(_rotation.Direction);
+            bullet.gameObject.SetActive(true);
         }
 
         private void ShootLaser()

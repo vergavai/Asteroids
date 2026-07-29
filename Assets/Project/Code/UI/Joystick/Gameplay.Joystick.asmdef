@@ -1,0 +1,4 @@
+﻿{
+  "name": "Gameplay.Joystick",
+  "references":[ "GUID:99cc3d45dfad45ed9c0e8295081ffc87" ]
+}
