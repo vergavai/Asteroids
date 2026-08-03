@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Project.Code.Common;
 using Project.Code.Configs;
-using UnityEngine;
 
 namespace Project.Code.Gameplay.Player.Projectiles.Bullets.BulletGenerator
 {
