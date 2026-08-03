@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using Project.Code.Configs;
+﻿using Project.Code.Configs;
 using Project.Code.Gameplay.Player.Collisions.Invincibility;
 using Project.Code.Gameplay.Player.InputReading;
 using UnityEngine;

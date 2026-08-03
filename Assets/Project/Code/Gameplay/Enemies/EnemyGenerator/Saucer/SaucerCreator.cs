@@ -11,7 +11,7 @@ namespace Project.Code.Gameplay.Enemies.EnemyGenerator.Saucer
         private EnemyPrefabs _prefabs;
         
         public SaucerCreator(EnemyConfig config, EnemyPrefabs prefabs, 
-            EnemyContainer container, SaucerFactory factory) : base(container, factory)
+            EnemyTransformHolder transformHolder, SaucerFactory factory) : base(transformHolder, factory)
         {
             _config = config;
             _prefabs = prefabs;
@@ -19,7 +19,7 @@ namespace Project.Code.Gameplay.Enemies.EnemyGenerator.Saucer
 
         public override List<SaucerBehaviour> Create()
         {
-            return CreateObjects(_prefabs.SaucerPrefab, _config.SaucerCount, _container);
+            return CreateObjects(_prefabs.SaucerPrefab, _config.SaucerCount, _parent);
         }
     }
 }

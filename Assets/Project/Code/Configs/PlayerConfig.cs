@@ -6,20 +6,21 @@ namespace Project.Code.Configs
     [Serializable]
     public class PlayerConfig
     {
-        [JsonProperty("bulletCount")] private int _bulletCount;
-        [JsonProperty("bulletSpeed")] private float _bulletSpeed;
-        [JsonProperty("laserCount")] private int _laserCount;
-        [JsonProperty("laserCooldown")] private float _laserCooldown;
-        [JsonProperty("laserDuration")] private float _laserDuration;
-        [JsonProperty("movementSpeed")] private float _movementSpeed;
-        [JsonProperty("accelerationTime")] private float _accelerationTime;
-        [JsonProperty("decelerationTime")] private float _decelerationTime;
-        [JsonProperty("pushDecelerationTime")] private float _pushDecelerationTime;
-        [JsonProperty("laserMaxCharges")] private int _laserMaxCharges;
-        [JsonProperty("hearts")] private int _hearts;
-        [JsonProperty("pushSpeed")] private float _pushSpeed;
+        [JsonProperty("BulletCount")] private int _bulletCount;
+        [JsonProperty("BulletSpeed")] private float _bulletSpeed;
+        [JsonProperty("LaserCount")] private int _laserCount;
+        [JsonProperty("LaserCooldown")] private float _laserCooldown;
+        [JsonProperty("LaserDuration")] private float _laserDuration;
+        [JsonProperty("MovementSpeed")] private float _movementSpeed;
+        [JsonProperty("AccelerationTime")] private float _accelerationTime;
+        [JsonProperty("DecelerationTime")] private float _decelerationTime;
+        [JsonProperty("PushDecelerationTime")] private float _pushDecelerationTime;
+        [JsonProperty("LaserMaxCharges")] private int _laserMaxCharges;
+        [JsonProperty("Hearts")] private int _hearts;
+        [JsonProperty("PushSpeed")] private float _pushSpeed;
         [JsonProperty("LaserLength")] private float _laserLength;
         [JsonProperty("LaserHeight")] private float _laserHeight;
+        [JsonProperty("InvincibilityDuration")] private float _invincibilityDuration;
 
         [JsonIgnore] public int BulletCount => _bulletCount;
         [JsonIgnore] public float BulletSpeed => _bulletSpeed;
@@ -34,12 +35,12 @@ namespace Project.Code.Configs
         [JsonIgnore] public float LaserHeight => _laserHeight;
         [JsonIgnore] public float LaserLength => _laserLength;
         [JsonIgnore] public int Hearts => _hearts;
-
-        public float PushSpeed => _pushSpeed;
+        [JsonIgnore] public float InvincibilityDuration => _invincibilityDuration;
+        [JsonIgnore] public float PushSpeed => _pushSpeed;
 
         public PlayerConfig(int bulletCount, float bulletSpeed, int laserCount, float laserCooldown,
             float laserDuration, float movementSpeed, float accelerationTime, float decelerationTime, float pushDecelerationTime,
-            int laserMaxCharges, int hearts, float pushSpeed,  float laserLength, float laserHeight)
+            int laserMaxCharges, int hearts, float pushSpeed,  float laserLength, float laserHeight, float invincibilityDuration)
         {
             _bulletCount = bulletCount;
             _bulletSpeed = bulletSpeed;
@@ -55,6 +56,7 @@ namespace Project.Code.Configs
             _pushSpeed = pushSpeed;
             _laserLength = laserLength;
             _laserHeight = laserHeight;
+            _invincibilityDuration = invincibilityDuration;
         }
     }
 }

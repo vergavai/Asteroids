@@ -7,6 +7,6 @@ namespace Project.Code.UI.Views
     public class SpeedView : MonoBehaviour
     {
         [Data("Speed")]
-        public TMP_Text currentSpeedText;
+        public TMP_Text _speedText;
     }
 }

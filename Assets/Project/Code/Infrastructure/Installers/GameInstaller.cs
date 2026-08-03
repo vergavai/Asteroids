@@ -1,7 +1,6 @@
-﻿using System.IO;
-using Project.Code.Configs;
+﻿using Project.Code.Configs;
 using Project.Code.Gameplay.GameBounds;
-using Unity.Plastic.Newtonsoft.Json;
+using Project.Code.Infrastructure;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +8,8 @@ namespace Project.Code.Infrastructure.Installers
 {
     public class GameInstaller : MonoInstaller
     {
+        [SerializeField] private Camera _camera;
+        
         public override void InstallBindings()
         {
             BindCamera();
@@ -20,14 +21,14 @@ namespace Project.Code.Infrastructure.Installers
         private void BindCamera()
         {
             Container.Bind<Camera>()
-                .FromInstance(Camera.main)
+                .FromInstance(_camera)
                 .AsSingle()
                 .NonLazy();
         }
 
         private void BindAnalytics()
         {
-            Container.Bind<Analytics.Analytics>()
+            Container.Bind<Analytics.AnalyticsService>()
                 .FromNew()
                 .AsSingle()
                 .NonLazy();
@@ -35,14 +36,9 @@ namespace Project.Code.Infrastructure.Installers
 
         private void BindGameConfig()
         {
-            GameConfig config;
-
-            string filePath = "Assets/Project/Resources/Configs/GameConfig.json";
-
-            if (File.Exists(filePath))
+            GameConfig config = ConfigLoader.LoadConfig<GameConfig>("Configs/GameConfig");
+            if (config != null)
             {
-                string json = File.ReadAllText(filePath);
-                config = JsonConvert.DeserializeObject<GameConfig>(json);
                 Container.Bind<GameConfig>()
                     .FromInstance(config)
                     .AsSingle()

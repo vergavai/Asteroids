@@ -9,9 +9,9 @@ namespace Project.Code.Gameplay.Player.Projectiles.Lasers.LaserGenerator
         private ProjectilePrefabs _prefabs;
         private PlayerConfig _config;
         
-        public LaserCreator(LasersContainer container, LaserFactory factory, 
+        public LaserCreator(LasersTransformHolder transformHolder, LaserFactory factory, 
             ProjectilePrefabs prefabs, PlayerConfig config)
-            : base(container, factory)
+            : base(transformHolder, factory)
         {
             _prefabs = prefabs;
             _config = config;
@@ -19,7 +19,7 @@ namespace Project.Code.Gameplay.Player.Projectiles.Lasers.LaserGenerator
 
         public override List<LaserBehaviour> Create()
         {
-            return CreateObjects(_prefabs.LaserPrefab, _config.LaserCount, _container);
+            return CreateObjects(_prefabs.LaserPrefab, _config.LaserCount, _parent);
         }
     }
 }

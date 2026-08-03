@@ -13,7 +13,6 @@ namespace Project.Code.UI.Joystick
 
         [SerializeField] private float _handleRange = 1f;
         [SerializeField] private float _deadZone = 0.1f;
-        [SerializeField] private CanvasGroup _canvasGroup;
 
         private MobileInputProvider _inputProvider;
         private Vector2 _inputVector;

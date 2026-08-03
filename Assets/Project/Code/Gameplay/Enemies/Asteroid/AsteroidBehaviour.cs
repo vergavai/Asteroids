@@ -12,11 +12,7 @@ namespace Project.Code.Gameplay.Enemies.Asteroid
         {
             _asteroid = asteroid;
             _asteroid.Initialize(transform);
-        }
-
-        public override void AddImpulse(Vector2 impulse)
-        {
-            _asteroid.AddImpulse(impulse);
+            _enemy = _asteroid;
         }
 
         public void SetShards(AsteroidShardBehaviour[] shardBehaviours)
@@ -27,11 +23,6 @@ namespace Project.Code.Gameplay.Enemies.Asteroid
                 shards[i] = shardBehaviours[i].AsteroidShard;
             }
             _asteroid.SetShards(shards);
-        }
-
-        private void Update()
-        {
-            _asteroid.UpdatePosition();
         }
 
         public void SetDirection(Vector3 direction)

@@ -1,22 +1,25 @@
+using Cysharp.Threading.Tasks;
 using Project.Code.Common;
 using Project.Code.Configs;
 using Project.Code.Gameplay.Enemies.Asteroid;
-using Project.Code.Gameplay.Enemies.Saucer;
 using Project.Code.Gameplay.Player.Movement;
 using Project.Code.Infrastructure.Analytics;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Project.Code.Gameplay.Enemies.EnemyGenerator
 {
     public class EnemySpawner : MonoBehaviour
     {
+        private const float DisableRangePadding = 2f;
+        
         private EnemiesPreparer _enemiesPreparer;
         private ObjectPool<EnemyBehaviour> _enemyPool;
         private ObjectPool<AsteroidShardBehaviour> _shardPool;
         private Camera _camera;
         private Transform _player;
-        private Analytics _analytics;
+        private AnalyticsService _analytics;
         
         private float _currentCooldown;
         private float _cooldown;
@@ -28,7 +31,7 @@ namespace Project.Code.Gameplay.Enemies.EnemyGenerator
 
         [Inject]
         private void Construct(EnemiesPreparer creator, ObjectPool<EnemyBehaviour> pool, ObjectPool<AsteroidShardBehaviour> shardPool,
-            Camera camera, EnemyConfig config, PlayerMovementBehaviour player, Analytics analytics)
+            Camera camera, EnemyConfig config, PlayerMovementBehaviour player, AnalyticsService analytics)
         {
             _enemiesPreparer = creator;
             _enemyPool = pool;
@@ -47,6 +50,11 @@ namespace Project.Code.Gameplay.Enemies.EnemyGenerator
             _enemiesPreparer.CreateAndAddObjects();
         }
 
+        private void Start()
+        {
+            _analytics.Initialize().Forget();
+        }
+
         private void Update()
         {
             _currentCooldown += Time.deltaTime;
@@ -60,7 +68,7 @@ namespace Project.Code.Gameplay.Enemies.EnemyGenerator
             _enemyPool.DisableObjectsOutsideCamera(_enemyDisableRange);
             _shardPool.DisableObjectsOutsideCamera(_enemyDisableRange);
         }
-        
+
         private void SpawnEnemy()
         {
             _enemyPool.TryGetRandomObject(out EnemyBehaviour enemy);
@@ -68,21 +76,17 @@ namespace Project.Code.Gameplay.Enemies.EnemyGenerator
             if (!enemy || !_player)
                 return;
 
-            enemy.transform.position = GetRandomPointOutsideScreen(2f);
+            enemy.transform.position = GetRandomPointOutsideScreen(DisableRangePadding);
 
             if (enemy is AsteroidBehaviour asteroid)
             {
                 asteroid.SetDirection((_player.position - enemy.transform.position).normalized);
-                _analytics.LogEvent("SPAWNED_ENEMY", "ENEMY_TYPE", "ASTEROID");
-            }
-            else if (enemy is SaucerBehaviour saucer)
-            {
-                _analytics.LogEvent("SPAWNED_ENEMY", "ENEMY_TYPE", "SAUCER");
             }
             
+            _analytics.LogEnemySpawned(enemy.Type);
             enemy.gameObject.SetActive(true);
         }
-        
+
         private Vector2 GetRandomPointOutsideScreen(float offset)
         {
             int side = Random.Range(0, 4);

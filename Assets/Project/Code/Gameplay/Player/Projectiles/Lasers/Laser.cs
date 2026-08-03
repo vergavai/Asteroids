@@ -13,7 +13,6 @@ namespace Project.Code.Gameplay.Player.Projectiles.Lasers
         private GameObject _self;
         private Transform _transform;
         private Transform _player;
-        private Vector3 _direction;
         private CancellationTokenSource _disableTokenSource;
         private PlayerConfig _config;
         private float _duration;
@@ -31,7 +30,7 @@ namespace Project.Code.Gameplay.Player.Projectiles.Lasers
             _self = self;
             _player = player;
             _transform = _self.transform;
-            
+
             SetLaserSize();
         }
 
@@ -62,13 +61,25 @@ namespace Project.Code.Gameplay.Player.Projectiles.Lasers
 
         private void SetDirection()
         {
-            _transform.rotation = Quaternion.Euler(new Vector3(0, 0, _player.transform.rotation.eulerAngles.z));
+            _transform.rotation = Quaternion.Euler(new Vector3(0, 0, _player.rotation.eulerAngles.z));
         }
 
-        private async UniTaskVoid DisableAsync(float time, CancellationToken token)
+        private async UniTask DisableAsync(float time, CancellationToken token)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(time), cancellationToken: token);
-            _self.SetActive(false);
+            try
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(time), cancellationToken: token);
+                if (_self != null)
+                    _self.SetActive(false);
+            }
+            catch (OperationCanceledException)
+            {
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"error: {ex}");
+                throw;
+            }
         }
 
         private void SetLaserSize()

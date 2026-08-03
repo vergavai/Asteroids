@@ -12,7 +12,7 @@ namespace Project.Code.Gameplay.Player.Collisions.Invincibility
         public event Action InvincibilityStarted;
         public event Action InvincibilityEnded;
 
-        public async UniTaskVoid ActivateInvincibility(float duration)
+        public async UniTask ActivateInvincibility(float duration)
         {
             _isInvincible = true;
             InvincibilityStarted?.Invoke();

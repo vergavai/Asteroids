@@ -15,16 +15,23 @@ namespace Project.Code.Common
         
         public bool TryGetRandomObject(out T result)
         {
-            List<T> disabledObjects = GetDisabledObjects();
-            
-            for (int i = 0; i < disabledObjects.Count;)
+            result = null;
+            int disabledCount = 0;
+            T selected = null;
+
+            for (int i = 0; i < _objects.Count; i++)
             {
-                int randomIndex = Random.Range(0, disabledObjects.Count);
-                result = disabledObjects[randomIndex];
-                return result;
+                if (!_objects[i].gameObject.activeSelf)
+                {
+                    disabledCount++;
+                    if (Random.Range(0, disabledCount) == 0)
+                    {
+                        selected = _objects[i];
+                    }
+                }
             }
 
-            result = null;
+            result = selected;
             return result;
         }
 
@@ -58,19 +65,5 @@ namespace Project.Code.Common
             }
         }
 
-        private List<T> GetDisabledObjects()
-        {
-            List<T> result = new List<T>();
-            
-            for (int i = 0; i < _objects.Count; i++)
-            {
-                if (!_objects[i].gameObject.activeSelf)
-                {
-                    result.Add(_objects[i]);
-                }
-            }
-            
-            return result;
-        }
     }
 }

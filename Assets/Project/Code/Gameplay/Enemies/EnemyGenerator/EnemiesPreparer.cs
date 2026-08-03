@@ -6,12 +6,12 @@ using Project.Code.Gameplay.Enemies.EnemyGenerator.Asteroid;
 using Project.Code.Gameplay.Enemies.EnemyGenerator.Saucer;
 using Project.Code.Gameplay.Enemies.EnemyGenerator.Shard;
 using Project.Code.Gameplay.Enemies.Saucer;
+using UnityEngine;
 
 namespace Project.Code.Gameplay.Enemies.EnemyGenerator
 {
     public class EnemiesPreparer
     {
-        private EnemyPrefabs _prefabs;
         private EnemyConfig _config;
         private ShardCreator _shardCreator;
         private AsteroidCreator _asteroidCreator;
@@ -20,10 +20,10 @@ namespace Project.Code.Gameplay.Enemies.EnemyGenerator
         private ObjectPool<AsteroidShardBehaviour> _shardPool;
         
         public EnemiesPreparer(ObjectPool<EnemyBehaviour> enemyPool, 
-            ObjectPool<AsteroidShardBehaviour> shardPool, EnemyPrefabs prefabs, 
-            EnemyConfig config, ShardCreator shardCreator, AsteroidCreator asteroidCreator, SaucerCreator saucerCreator) 
+            ObjectPool<AsteroidShardBehaviour> shardPool, EnemyConfig config,
+            ShardCreator shardCreator, AsteroidCreator asteroidCreator, 
+            SaucerCreator saucerCreator) 
         {
-            _prefabs = prefabs;
             _config = config;
             _shardCreator = shardCreator;
             _asteroidCreator = asteroidCreator;
@@ -51,6 +51,7 @@ namespace Project.Code.Gameplay.Enemies.EnemyGenerator
 
             if (shards.Count != expectedTotal)
             {
+                Debug.LogError("Incorrect number of shards");
                 return;
             }
 

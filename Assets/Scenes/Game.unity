@@ -638,7 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15dd336192f7425eaae2189245c03045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpeedText: {fileID: 477804638}
+  _speedText: {fileID: 477804638}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,7 +860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af94702c9c484e17af951f424e2917c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChargesText: {fileID: 613494964}
+  _chargesText: {fileID: 613494964}
 --- !u!114 &613494964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,7 +1170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6d4cb0e4ec4f48829ad0aaac577d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parameterText: {fileID: 852820345}
+  _rotationText: {fileID: 852820345}
 --- !u!1 &897850758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,6 +1260,8 @@ GameObject:
   - component: {fileID: 976238892}
   - component: {fileID: 976238893}
   - component: {fileID: 976238894}
+  - component: {fileID: 976238896}
+  - component: {fileID: 976238897}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -1279,11 +1281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d8bc296c7340d2aa0aa1e60887cc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceMobile: {fileID: 1763321448}
   _playerPrefab: {fileID: 6538863247540873702, guid: 9ea497f9a57c79c438a43c72553e2264, type: 3}
-  projectilePrefabs: {fileID: 11400000, guid: fc5c02d849760c54db8effe0da66c4ab, type: 2}
   _spawnPoint: {fileID: 2102411129}
-  _projectilesContainer: {fileID: 384262954}
 --- !u!114 &976238890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,7 +1298,9 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 976238894}
+  - {fileID: 976238896}
   - {fileID: 976238889}
+  - {fileID: 976238897}
   - {fileID: 976238892}
   - {fileID: 976238893}
   _installerPrefabs: []
@@ -1347,7 +1348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyContainer: {fileID: 762040842}
-  enemyPrefabs: {fileID: 11400000, guid: c8baea543b7865944a4264f2d4933fea, type: 2}
+  _enemyPrefabs: {fileID: 11400000, guid: c8baea543b7865944a4264f2d4933fea, type: 2}
 --- !u!114 &976238893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1372,6 +1373,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d051d361db04f859070e52d6101ba34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 519420031}
+--- !u!114 &976238896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976238888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a05f21ce544a6caec6cc6b74b4daeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _forceMobile: {fileID: 1763321448}
+--- !u!114 &976238897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976238888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc8c1534be6b4d48a4535fe6b9b12359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectilesContainer: {fileID: 384262954}
+  _projectilePrefabs: {fileID: 11400000, guid: fc5c02d849760c54db8effe0da66c4ab, type: 2}
 --- !u!1 &1098521237
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,7 +1569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532b47ce27ab46fe961a2bbae7129f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CooldownText: {fileID: 1098521241}
+  _cooldownText: {fileID: 1098521241}
 --- !u!1 &1232727328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,7 +1664,6 @@ MonoBehaviour:
   _handle: {fileID: 2027158112}
   _handleRange: 1
   _deadZone: 0.1
-  _canvasGroup: {fileID: 0}
 --- !u!1 &1290798785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,7 +1911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd017c72f8743a0b2dc0e1d1de18115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Coordinates: {fileID: 1666491273}
+  _positionText: {fileID: 1666491273}
 --- !u!114 &1666491273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2010,7 +2038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223462db82d8494c8f2a73a7ac06f594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceMobileInput: 1
+  _forceMobileInput: 0
 --- !u!4 &1763321449
 Transform:
   m_ObjectHideFlags: 0

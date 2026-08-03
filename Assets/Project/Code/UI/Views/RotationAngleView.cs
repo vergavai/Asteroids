@@ -6,7 +6,7 @@ namespace Project.Code.UI.Views
 {
     public class RotationAngleView : MonoBehaviour
     {
-        [Data("RotationAngle")] 
-        public TMP_Text _parameterText;
+        [Data("RotationAngle")]
+        public TMP_Text _rotationText;
     }
 }

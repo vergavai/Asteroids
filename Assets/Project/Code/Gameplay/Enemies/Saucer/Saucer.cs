@@ -3,16 +3,13 @@ using UnityEngine;
 
 namespace Project.Code.Gameplay.Enemies.Saucer
 {
-    public class Saucer
+    public class Saucer : Enemy
     {
-        private const float Epsilon = 0.0001f;
-        
-        private Transform _self;
         private Transform _player;
         private EnemyConfig _config;
-        private Vector2 _targetPosition;
-        private float _timer;
 
+        private float _timer;
+        private Vector2 _targetPosition;
         private Vector2 _pushVelocity;
 
         public Saucer(EnemyConfig config)
@@ -22,32 +19,20 @@ namespace Project.Code.Gameplay.Enemies.Saucer
 
         public void Initialize(Transform self, Transform player)
         {
-            _self = self;
+            base.Initialize(self);
             _player = player;
         }
 
-        public void AddImpulse(Vector2 impulse)
+        public override void ResetState()
         {
-            _pushVelocity += impulse;
-        }
-
-        public void ResetState()
-        {
+            base.ResetState();
             _timer = 0f;
-            _targetPosition = _self.position;
-            _pushVelocity = Vector2.zero;
+            _targetPosition = _transform.position;
         }
 
-        public void UpdatePosition()
+        public override void UpdatePosition()   
         {
-            if (_pushVelocity.sqrMagnitude > Epsilon)
-            {
-                _pushVelocity = Vector2.Lerp(_pushVelocity, Vector2.zero, Time.deltaTime);
-                if (_pushVelocity.sqrMagnitude < Epsilon)
-                    _pushVelocity = Vector2.zero;
-
-                _self.Translate(_pushVelocity * Time.deltaTime, Space.World);
-            }
+            base.UpdatePosition();
 
             if (!_player)
                 return;
@@ -59,7 +44,7 @@ namespace Project.Code.Gameplay.Enemies.Saucer
                 _targetPosition = _player.position;
             }
 
-            Vector2 currentPos = _self.position;
+            Vector2 currentPos = _transform.position;
             Vector2 direction = (_targetPosition - currentPos).normalized;
             float distance = Vector2.Distance(currentPos, _targetPosition);
 
@@ -69,7 +54,7 @@ namespace Project.Code.Gameplay.Enemies.Saucer
                 if (moveDistance > distance)
                     moveDistance = distance;
 
-                _self.Translate(direction * moveDistance, Space.World);
+                _transform.Translate(direction * moveDistance, Space.World);
             }
         }
     }

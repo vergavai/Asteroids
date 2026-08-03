@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Project.Code.Common;
+﻿using Project.Code.Common;
 using Project.Code.Configs;
 using Project.Code.Gameplay.Enemies;
 using Project.Code.Gameplay.Enemies.Asteroid;
@@ -8,7 +7,6 @@ using Project.Code.Gameplay.Enemies.EnemyGenerator.Asteroid;
 using Project.Code.Gameplay.Enemies.EnemyGenerator.Saucer;
 using Project.Code.Gameplay.Enemies.EnemyGenerator.Shard;
 using Project.Code.Gameplay.Enemies.Saucer;
-using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
 using Zenject;
 
@@ -17,7 +15,7 @@ namespace Project.Code.Infrastructure.Installers
     public class EnemyInstaller : MonoInstaller
     {
         [SerializeField] private Transform _enemyContainer;
-        [SerializeField] private EnemyPrefabs enemyPrefabs;
+        [SerializeField] private EnemyPrefabs _enemyPrefabs;
         
         public override void InstallBindings()
         {
@@ -43,8 +41,8 @@ namespace Project.Code.Infrastructure.Installers
 
         private void BindEnemyContainer()
         {
-            Container.Bind<EnemyContainer>()
-                .FromInstance(new EnemyContainer(_enemyContainer))
+            Container.Bind<EnemyTransformHolder>()
+                .FromInstance(new EnemyTransformHolder(_enemyContainer))
                 .AsSingle()
                 .NonLazy();
         }
@@ -105,22 +103,17 @@ namespace Project.Code.Infrastructure.Installers
 
         private void BindConfigs()
         {
-            EnemyConfig config;
-            
-            string filePath = "Assets/Project/Resources/Configs/EnemyConfig.json";
-        
-            if (File.Exists(filePath))
+            EnemyConfig config = ConfigLoader.LoadConfig<EnemyConfig>("Configs/EnemyConfig");
+            if (config != null)
             {
-                string json = File.ReadAllText(filePath);
-                config = JsonConvert.DeserializeObject<EnemyConfig>(json);
                 Container.Bind<EnemyConfig>()
                     .FromInstance(config)
                     .AsSingle()
                     .NonLazy();
             }
-            
+
             Container.Bind<EnemyPrefabs>()
-                .FromInstance(enemyPrefabs)
+                .FromInstance(_enemyPrefabs)
                 .AsSingle()
                 .NonLazy();
         }

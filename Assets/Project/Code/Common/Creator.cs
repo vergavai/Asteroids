@@ -6,11 +6,11 @@ namespace Project.Code.Common
     public abstract class Creator<T> where T : Component
     {
         protected Factory<T> _factory;
-        protected Transform _container;
+        protected Transform _parent;
 
-        public Creator(Container container, Factory<T> factory)
+        public Creator(TransformHolder transformHolder, Factory<T> factory)
         {
-            _container = container.Transform;
+            _parent = transformHolder.Transform;
             _factory = factory;
         }
 

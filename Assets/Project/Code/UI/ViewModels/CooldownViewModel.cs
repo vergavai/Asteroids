@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using MVVM;
 using Project.Code.Gameplay.Player.Info;
 using UniRx;
-using UnityEngine;
 using Zenject;
 
 namespace Project.Code.UI.ViewModels
@@ -30,10 +30,10 @@ namespace Project.Code.UI.ViewModels
             _subscription.Dispose();
         }
 
-        private void OnCooldown(float[] timers)
+        private void OnCooldown(IReadOnlyList<float> timers)
         {
             string text = "";
-            for (int i = 0; i < timers.Length; i++)
+            for (int i = 0; i < timers.Count; i++)
             {
                 string display = timers[i] == 0 ? "ready" : timers[i].ToString("F2");
                 text += $"{i + 1} charge: {display}\n";

@@ -10,9 +10,9 @@ namespace Project.Code.Gameplay.Enemies.EnemyGenerator.Asteroid
         private EnemyConfig _config;
         private EnemyPrefabs _prefabs;
         
-        public AsteroidCreator(EnemyContainer container, AsteroidFactory factory, 
+        public AsteroidCreator(EnemyTransformHolder transformHolder, AsteroidFactory factory, 
             EnemyConfig config, EnemyPrefabs prefabs)
-            : base(container, factory)
+            : base(transformHolder, factory)
         {
             _config = config;
             _prefabs = prefabs;
@@ -20,7 +20,7 @@ namespace Project.Code.Gameplay.Enemies.EnemyGenerator.Asteroid
 
         public override List<AsteroidBehaviour> Create()
         {
-            return CreateObjects(_prefabs.AsteroidPrefab, _config.AsteroidCount, _container);
+            return CreateObjects(_prefabs.AsteroidPrefab, _config.AsteroidCount, _parent);
         }
     }
 }

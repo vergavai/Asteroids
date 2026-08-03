@@ -10,8 +10,8 @@ namespace Project.Code.Gameplay.Enemies.EnemyGenerator.Shard
         private EnemyConfig _config;
         private EnemyPrefabs _prefabs;
         
-        public ShardCreator(EnemyContainer container, ShardFactory factory, EnemyConfig config, EnemyPrefabs prefabs) : 
-            base(container, factory)
+        public ShardCreator(EnemyTransformHolder transformHolder, ShardFactory factory, EnemyConfig config, EnemyPrefabs prefabs) : 
+            base(transformHolder, factory)
         {
             _config = config;
             _prefabs = prefabs;
@@ -19,7 +19,7 @@ namespace Project.Code.Gameplay.Enemies.EnemyGenerator.Shard
 
         public override List<AsteroidShardBehaviour> Create()
         {
-            return CreateObjects(_prefabs.ShardPrefab, _config.AsteroidCount * _config.ShardsPerAsteroid, _container);
+            return CreateObjects(_prefabs.ShardPrefab, _config.AsteroidCount * _config.ShardsPerAsteroid, _parent);
         }
     }
 }

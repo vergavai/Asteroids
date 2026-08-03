@@ -1,5 +1,4 @@
-﻿using System;
-using Project.Code.Gameplay.Player.Collisions.Invincibility;
+﻿using Project.Code.Gameplay.Player.Collisions.Invincibility;
 using UnityEngine;
 
 namespace Project.Code.Gameplay.Player.InputReading
@@ -8,12 +7,10 @@ namespace Project.Code.Gameplay.Player.InputReading
     {
         private IInputProvider _inputProvider;
         private PlayerInvincibility _invincibility;
-        
+        private bool _isMoving;
+
         private float _horizontalInput;
         private float _verticalInput;
-
-        public event Action ShootRequested;
-        public event Action LaserRequested;
 
         public float HorizontalInput => _horizontalInput;
         public float VerticalInput => _verticalInput;
@@ -22,13 +19,12 @@ namespace Project.Code.Gameplay.Player.InputReading
         {
             _inputProvider = inputProvider;
             _invincibility = invincibility;
-
-            _inputProvider.ShootPerformed += () => ShootRequested?.Invoke();
-            _inputProvider.LaserPerformed += () => LaserRequested?.Invoke();
         }
 
         public void UpdateInput()
         {
+            _inputProvider.UpdateInput();
+
             if (_invincibility.IsInvincible)
             {
                 _horizontalInput = 0;
@@ -36,8 +32,6 @@ namespace Project.Code.Gameplay.Player.InputReading
                 return;
             }
 
-            _inputProvider.UpdateInput();
-            
             Vector2 movement = _inputProvider.GetMovementInput();
             _horizontalInput = movement.x;
             _verticalInput = movement.y;

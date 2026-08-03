@@ -10,7 +10,6 @@ namespace Project.Code.Gameplay.Player.Health
     {
         private PlayerCollisionDetector _collisionDetector;
         private PlayerConfig _config;
-        private GameObject _self;
         private readonly SignalBus _signalBus;
         
         private int _currentHealth;
@@ -24,29 +23,23 @@ namespace Project.Code.Gameplay.Player.Health
             _currentHealth = _config.Hearts;
         }
 
-        public void Initialize(GameObject self)
-        {
-            _self = self;
-        }
-        
         public void SubscribeToEvents()
         {
-            _collisionDetector.OnPlayerCollision += OnCollisionWithEnemy;
+            _collisionDetector.OnCollision += OnCollisionWithEnemy;
         }
 
         public void UnsubscribeFromEvents()
         {
-            _collisionDetector.OnPlayerCollision -= OnCollisionWithEnemy;
+            _collisionDetector.OnCollision -= OnCollisionWithEnemy;
         }
 
-        private void OnCollisionWithEnemy(EnemyBehaviour enemy)
+        private void OnCollisionWithEnemy()
         {
             _currentHealth = Mathf.Max(_currentHealth - 1, 0);
 
             if (_currentHealth <= 0)
             {
                 _signalBus.Fire<PlayerDiedSignal>();
-                _self.SetActive(false);
             }
         }
     }

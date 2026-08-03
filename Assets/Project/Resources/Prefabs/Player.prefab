@@ -218,8 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d87d88241a473fb4b9c6c60cd0020b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gunPoint: {fileID: 1900541101358762518}
-  _laserPoint: {fileID: 1900541101358762518}
+  _shootingPoint: {fileID: 1900541101358762518}
 --- !u!114 &3691298119598847089
 MonoBehaviour:
   m_ObjectHideFlags: 0

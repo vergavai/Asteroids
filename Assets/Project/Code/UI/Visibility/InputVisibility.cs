@@ -9,9 +9,7 @@ namespace Project.Code.UI.Visibility
 
         private void Awake()
         {
-            bool useMobile = _forceMobile.ForceMobileInput || SystemInfo.deviceType == DeviceType.Handheld;
-            
-            if (!useMobile)
+            if (!_forceMobile.ForceMobileInput)
             {
                 _canvasGroup.blocksRaycasts = false;
                 _canvasGroup.interactable = false;

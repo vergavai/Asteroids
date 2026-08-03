@@ -12,5 +12,6 @@
   "Hearts": 3,
   "PushSpeed": 2,
   "LaserLength": 35,
-  "LaserHeight": 0.5
+  "LaserHeight": 0.5,
+  "InvincibilityDuration": 3
 }

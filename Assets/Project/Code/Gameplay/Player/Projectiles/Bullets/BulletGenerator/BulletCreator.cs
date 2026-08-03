@@ -10,8 +10,8 @@ namespace Project.Code.Gameplay.Player.Projectiles.Bullets.BulletGenerator
         private ProjectilePrefabs _prefabs;
         private PlayerConfig _config;
         
-        public BulletCreator(BulletsContainer container, BulletFactory factory, ProjectilePrefabs prefabs, PlayerConfig config) 
-            : base(container, factory)
+        public BulletCreator(BulletsTransformHolder transformHolder, BulletFactory factory, ProjectilePrefabs prefabs, PlayerConfig config) 
+            : base(transformHolder, factory)
         {
             _prefabs = prefabs;
             _config = config;
@@ -19,7 +19,7 @@ namespace Project.Code.Gameplay.Player.Projectiles.Bullets.BulletGenerator
 
         public override List<BulletBehaviour> Create()
         {
-            return CreateObjects(_prefabs.BulletPrefab, _config.BulletCount, _container);
+            return CreateObjects(_prefabs.BulletPrefab, _config.BulletCount, _parent);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using Zenject;
+﻿using Zenject;
 
 namespace Project.Code.Gameplay.Enemies.Asteroid
 {
@@ -13,16 +12,7 @@ namespace Project.Code.Gameplay.Enemies.Asteroid
         {
             _asteroidShard = asteroidShard;
             _asteroidShard.Initialize(gameObject);
-        }
-
-        public override void AddImpulse(Vector2 impulse)
-        {
-            _asteroidShard.AddImpulse(impulse);
-        }
-
-        private void Update()
-        {
-            _asteroidShard.UpdatePosition();
+            _enemy = asteroidShard;
         }
 
         public override void Kill()

@@ -3,11 +3,8 @@ using UnityEngine;
 
 namespace Project.Code.Gameplay.Enemies.Asteroid
 {
-    public class Asteroid
+    public class Asteroid : Enemy
     {
-        private const float Epsilon = 0.0001f;
-        
-        private Transform _transform;
         private float _speed;
         private Vector3 _direction;
         private AsteroidShard[] _shards;
@@ -19,31 +16,14 @@ namespace Project.Code.Gameplay.Enemies.Asteroid
             _speed = config.AsteroidSpeed;
         }
 
-        public void Initialize(Transform transform)
-        {
-            _transform = transform;
-        }
-
         public void SetShards(AsteroidShard[] shards)
         {
             _shards = shards;
         }
 
-        public void AddImpulse(Vector2 impulse)
+        public override void UpdatePosition()
         {
-            _pushVelocity += impulse;
-        }
-
-        public void UpdatePosition()
-        {
-            if (_pushVelocity.sqrMagnitude > Epsilon)
-            {
-                _pushVelocity = Vector2.Lerp(_pushVelocity, Vector2.zero, Time.deltaTime);
-                if (_pushVelocity.sqrMagnitude < Epsilon)
-                    _pushVelocity = Vector2.zero;
-
-                _transform.Translate(_pushVelocity * Time.deltaTime, Space.World);
-            }
+            base.UpdatePosition();
 
             _transform.Translate(_direction * (_speed * Time.deltaTime));
         }

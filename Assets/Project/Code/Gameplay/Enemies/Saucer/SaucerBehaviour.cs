@@ -1,5 +1,4 @@
 ﻿using Project.Code.Gameplay.Player.Movement;
-using UnityEngine;
 using Zenject;
 
 namespace Project.Code.Gameplay.Enemies.Saucer
@@ -13,21 +12,12 @@ namespace Project.Code.Gameplay.Enemies.Saucer
         {
             _saucer = saucer;
             _saucer.Initialize(transform, player.transform);
-        }
-
-        public override void AddImpulse(Vector2 impulse)
-        {
-            _saucer.AddImpulse(impulse);
-        }
-
-        private void Update()
-        {
-            _saucer.UpdatePosition();
+            _enemy = _saucer;
         }
 
         public override void Kill()
         {
-            _saucer.ResetState();
+            _enemy.ResetState();
             gameObject.SetActive(false);
         }
     }
